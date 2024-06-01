@@ -1,0 +1,41 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+     {{title}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-item>
+    <ion-label>Fini les heures perdu et les arnaques  </ion-label>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label>
+      Votre compagnon de confiance pour localiser les meilleurs garages à proximité !
+    </ion-label>
+  </ion-item>
+  <ion-toolbar>
+  </ion-toolbar>
+
+  
+<div class="row" *ngFor="let item of garages">
+    <div class="col s12 m6">
+      <div class="card blue-grey darken-1">
+        <div class="card-image">
+          <img id="pkmImg" src={{item.image_url}}>
+        </div>
+        <div class="card-content white-text">
+          <span class="card-title">{{item.name}}</span>
+          <p>{{item.location.city}}</p>
+        </div>
+        <div class="card-action">
+          <a>Detail</a>
+          <a >Commentaire</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</ion-content>

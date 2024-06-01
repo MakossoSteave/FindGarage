@@ -1,0 +1,7 @@
+{
+  "name": "garage_plan",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

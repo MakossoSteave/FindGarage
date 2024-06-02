@@ -11,6 +11,7 @@ import { GeolocationService } from '../geolocalisation.service';
 
 })
 export class Tab2Page {
+  title= "FindGarage"
   zoom = 12;
   center: google.maps.LatLngLiteral = { lat: 48.8566, lng: 2.3522 }; // Coordonnées pour Paris
   options: google.maps.MapOptions = {

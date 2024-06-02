@@ -3,7 +3,7 @@ import { HomeService } from '../home.service';
 import { CommonModule } from '@angular/common';
 import {garage} from '../garage'
 import { SearchbarInputEventDetail } from '@ionic/angular';
-import { IonSearchbarCustomEvent } from '@ionic/core';
+import { InputInputEventDetail, IonInputCustomEvent, IonSearchbarCustomEvent } from '@ionic/core';
 import { GeolocationService } from '../geolocalisation.service';
 
 @Component({
@@ -12,6 +12,10 @@ import { GeolocationService } from '../geolocalisation.service';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page  implements OnInit  {
+searchCity($event: IonInputCustomEvent<InputInputEventDetail>) {
+  console.log($event.detail.value);
+
+}
   public data = [
   'Paris',
   'Nanterre',

@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GeolocationService {
   constructor() { }
+  
 
   getCurrentPosition(): Promise<GeolocationPosition> {
     return new Promise((resolve, reject) => {
@@ -15,4 +17,6 @@ export class GeolocationService {
       }
     });
   }
+
+  
 }

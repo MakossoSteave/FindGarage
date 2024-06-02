@@ -18,7 +18,9 @@
   </ion-item>
   <ion-toolbar>
   </ion-toolbar>
-
+  <ion-item>
+    <ion-input (ionInput)="searchCity($event)"  label="Chercher dans une autre ville" placeholder="Ou souhaitez vous chercher ?"></ion-input>
+  </ion-item>
   
 <div class="row" *ngFor="let item of garages">
     <div class="col s12 m6">

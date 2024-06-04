@@ -5,6 +5,7 @@ import {garage} from '../garage'
 import { SearchbarInputEventDetail } from '@ionic/angular';
 import { InputInputEventDetail, IonInputCustomEvent, IonSearchbarCustomEvent } from '@ionic/core';
 import { GeolocationService } from '../geolocalisation.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
@@ -35,7 +36,7 @@ searchCity($event: IonInputCustomEvent<InputInputEventDetail>) {
   garages!: garage[];
   inputValue:string =''
   center: { lat: number; lng: number; } | any;
-  constructor(private garageService : HomeService , private geolocationService :GeolocationService) {}
+  constructor(private garageService : HomeService , private geolocationService :GeolocationService , private router :Router) {}
   ngOnInit() {
 
     this.geolocationService.getCurrentPosition().then(position => {
@@ -45,6 +46,7 @@ searchCity($event: IonInputCustomEvent<InputInputEventDetail>) {
       };
       this.garageService.getGarages(this.center.lat, this.center.lng).subscribe(data => {
         this.garages = data.businesses;
+
         
       });
     }).catch(error => {
@@ -53,14 +55,13 @@ searchCity($event: IonInputCustomEvent<InputInputEventDetail>) {
   
   }
 
+  goDetail(idGarage:garage){
+    console.log(idGarage.alias);
 
-
-  searchData(event: Event): void {
-    const target = event.target as HTMLInputElement;
-    this.inputValue = target.value;
-    console.log(this.inputValue);
-    console.log( " les logggggg")
-
+    this.router.navigate(["garageDetail/"+idGarage.id])
   }
+
+
+
   
 }

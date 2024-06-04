@@ -13,10 +13,7 @@ import { Router } from '@angular/router';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page  implements OnInit  {
-searchCity($event: IonInputCustomEvent<InputInputEventDetail>) {
-  console.log($event.detail.value);
 
-}
   public data = [
   'Paris',
   'Nanterre',
@@ -36,6 +33,9 @@ searchCity($event: IonInputCustomEvent<InputInputEventDetail>) {
   garages!: garage[];
   inputValue:string =''
   center: { lat: number; lng: number; } | any;
+  city : string |any;
+  garageCity: undefined;
+
   constructor(private garageService : HomeService , private geolocationService :GeolocationService , private router :Router) {}
   ngOnInit() {
 
@@ -53,6 +53,18 @@ searchCity($event: IonInputCustomEvent<InputInputEventDetail>) {
       console.error('Error getting location', error);
     });   
   
+  }
+  searchCity($event: IonInputCustomEvent<InputInputEventDetail>) {
+    this.city = $event.detail.value;
+    this.garageService.getGaraPoximite(this.city).subscribe(data=>{
+      console.log(this.garageCity)
+      this.garageCity = data
+    })
+    if(this.garageCity != null){
+      console.log(this.garageCity)
+    }else{
+      console.log("kl")
+    }
   }
 
   goDetail(idGarage:garage){

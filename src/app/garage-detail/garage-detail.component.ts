@@ -23,9 +23,9 @@ export class GarageDetailComponent implements OnInit {
     if (this.garageId) {
       this.garage = this.garageService.getGarageDetails(this.garageId).subscribe(data => {
         this.garage = data;
+        console.log(data)
         this.address = this.garage.location.address1 +" "+this.garage.location.city
         this.postale_code = this.garage.location.zip_code
-
       });
     }else{
       console.log('aucune donné trouvé ')
@@ -34,6 +34,9 @@ export class GarageDetailComponent implements OnInit {
 
   goHome() {
     this.router.navigate(['tabs/tab1'])
+  }
+  goPlan() {
+    this.router.navigate(['tabs/tab2'])
   }
   title = 'findGarage'
 

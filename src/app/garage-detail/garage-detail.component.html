@@ -8,7 +8,10 @@
 <ion-icon name="arrow-back-circle-outline" ></ion-icon>
 <ion-content [fullscreen]="true">
   <ion-card  *ngIf="garage != undefined">
-    <img alt="Silhouette of mountains" src={{garage.image_url}} />
+    <div *ngIf="garage.image_url !=''">
+      <img alt="Silhouette of mountains" src={{garage.image_url}} />
+    </div>
+    
     <ion-card-header>
       <ion-card-title>{{garage.name}}</ion-card-title>
     </ion-card-header>
@@ -21,7 +24,8 @@
 
     </ion-card>
   <div class="center">
-    <ion-button color="success"><small> <ion-icon name="call-outline"> </ion-icon> </small> contacter</ion-button> <ion-button  color="warning"> <small><ion-icon name="navigate-outline"></ion-icon> </small>se diriger</ion-button>
+    <ion-button color="success"><small> <ion-icon name="call-outline"> </ion-icon> </small> contacter</ion-button> 
+    <ion-button  color="warning"> <small><ion-icon name="navigate-outline"></ion-icon> </small>itineraire</ion-button>
   </div>
 </ion-content>
 <ion-tabs>
@@ -32,7 +36,7 @@
       <ion-label>Accueil</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="tab2" href="/tabs/tab2">
+    <ion-tab-button tab="tab2" (click)="goPlan()">
       <ion-icon aria-hidden="true" name="navigate-outline"></ion-icon>
       <ion-label>Plan</ion-label>
     </ion-tab-button>

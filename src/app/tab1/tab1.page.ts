@@ -7,6 +7,16 @@ import { InputInputEventDetail, IonInputCustomEvent, IonSearchbarCustomEvent } f
 import { GeolocationService } from '../geolocalisation.service';
 import { Router } from '@angular/router';
 
+
+
+
+
+interface Garagem {
+  name: string;
+  location: { city: string };
+  image_url: string;
+}
+
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -34,7 +44,9 @@ export class Tab1Page  implements OnInit  {
   inputValue:string =''
   center: { lat: number; lng: number; } | any;
   city : string |any;
-  garageCity: undefined;
+  garageCity : garage[]|any
+  garageCityArray: garage[] = [];
+  garageValidate : any;
 
   constructor(private garageService : HomeService , private geolocationService :GeolocationService , private router :Router) {}
   ngOnInit() {
@@ -57,14 +69,12 @@ export class Tab1Page  implements OnInit  {
   searchCity($event: IonInputCustomEvent<InputInputEventDetail>) {
     this.city = $event.detail.value;
     this.garageService.getGaraPoximite(this.city).subscribe(data=>{
-      console.log(this.garageCity)
       this.garageCity = data
+      this.garageCityArray = Object.values(this.garageCity);
+      this.garageValidate = this.garageCityArray[0]
+
     })
-    if(this.garageCity != null){
-      console.log(this.garageCity)
-    }else{
-      console.log("kl")
-    }
+
   }
 
   goDetail(idGarage:garage){

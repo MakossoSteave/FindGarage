@@ -38,7 +38,7 @@ export class GarageDetailComponent implements OnInit {
   goPlan() {
     this.router.navigate(['tabs/tab2'])
   }
-  title = 'findGarage'
+  title = 'FindGarage'
 
 
 }

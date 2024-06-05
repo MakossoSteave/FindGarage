@@ -21,27 +21,7 @@
   <ion-item>
     <ion-input (ionInput)="searchCity($event)"  label="Chercher dans une autre ville" placeholder="Ou souhaitez vous chercher ?"></ion-input>
   </ion-item>
-  
-  <div class="row" *ngIf="garageCity != undefined; else allGarages">
-    <div class="row" *ngFor="let item of garageCity">
-      <div class="col s12 m6">
-        <div class="card blue-grey darken-1">
-          <div class="card-image">
-            <img id="pkmImg" [src]="item.image_url">
-          </div>
-          <div class="card-content white-text">
-            <span class="card-title">{{item.name}}</span>
-            <p>{{item.location.city}}</p>
-          </div>
-          <div class="card-action">
-            <a (click)="goDetail(item)">En savoir plus</a>
-            <a>Commentaire</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <ng-template #allGarages>
+  <div *ngIf="garageCity === undefined">
     <div class="row" *ngFor="let item of garages">
       <div class="col s12 m6">
         <div class="card blue-grey darken-1">
@@ -59,4 +39,27 @@
         </div>
       </div>
     </div>
-  </ng-template>
+  </div>
+
+  <!-- Si garageCity n'est pas undefined, afficher garageCity -->
+  <div *ngIf="garageCity !== undefined">
+    <div class="row" *ngFor="let item of garageValidate">
+      <div class="col s12 m6">
+        <div class="card blue-grey darken-1">
+          <div class="card-image">
+            <img id="pkmImg" [src]="item.image_url">
+          </div>
+          <div class="card-content white-text">
+            <span class="card-title">{{item.name}}</span>
+            <p>{{item.location.city}}</p>
+          </div>
+          <div class="card-action">
+            <a (click)="goDetail(item)">En savoir plus</a>
+            <a>Commentaire</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</ion-content>

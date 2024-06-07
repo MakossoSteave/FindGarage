@@ -20,7 +20,7 @@ export class HomeService {
       'description' : "gestion des garages de proximité",
       'accept': 'application/json'
     }); 
-    const url = `${this.apiUrl}?latitude=${latitude}&longitude=${longitude}&radius=${radius}&categories=autorepair`;
+    const url = `${this.apiUrl}?latitude=${latitude}&longitude=${longitude}&radius=${radius}&categories=autorepair&limite=100`;
     console.log(url)
     return this.http.get<any>(url, {headers});
   }
@@ -39,7 +39,7 @@ export class HomeService {
       'description' : "gestion des garages de proximité",
       'accept': 'application/json'
     });
-    const url = `${this.apiDetail}search?location=${idCity}&categories=autorepair&sort_by=best_match`;
+    const url = `${this.apiDetail}search?location=${idCity}&categories=autorepair&sort_by=best_match&limite=100`;
     return this.http.get<any>(url, {headers});
   }
 }

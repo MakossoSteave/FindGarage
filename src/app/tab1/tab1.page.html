@@ -1,65 +1,97 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-     {{title}}
-    </ion-title>
+    <ion-title class="text-center">{{title}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-item>
-    <ion-label>Fini les heures perdu et les arnaques  </ion-label>
-  </ion-item>
-  
-  <ion-item>
-    <ion-label>
-      Votre compagnon de confiance pour localiser les meilleurs garages à proximité !
-    </ion-label>
-  </ion-item>
-  <ion-toolbar>
-  </ion-toolbar>
-  <ion-item>
-    <ion-input (ionInput)="searchCity($event)"  label="Chercher dans une autre ville" placeholder="Ou souhaitez vous chercher ?"></ion-input>
-  </ion-item>
-  <div *ngIf="garageCity === undefined">
-    <div class="row" *ngFor="let item of garages">
-      <div class="col s12 m6">
-        <div class="card blue-grey darken-1">
-          <div class="card-image">
-            <img id="pkmImg" [src]="item.image_url">
-          </div>
-          <div class="card-content white-text">
-            <span class="card-title">{{item.name}}</span>
-            <p>{{item.location.city}}</p>
-          </div>
-          <div class="card-action">
-            <a (click)="goDetail(item)">En savoir plus</a>
-            <a>Commentaire</a>
-          </div>
-        </div>
-      </div>
+<ion-content [fullscreen]="true" class="ion-padding background-gradient">
+  <div class="container mt-4">
+    <div class="intro-text text-center mb-4">
+      <h2 class="mb-2">Fini les heures perdues et les arnaques</h2>
+      <p>Votre compagnon de confiance pour localiser les meilleurs garages à proximité !</p>
     </div>
-  </div>
 
-  <!-- Si garageCity n'est pas undefined, afficher garageCity -->
-  <div *ngIf="garageCity !== undefined">
-    <div class="row" *ngFor="let item of garageValidate">
-      <div class="col s12 m6">
-        <div class="card blue-grey darken-1">
-          <div class="card-image">
-            <img id="pkmImg" [src]="item.image_url">
+    <div class="search-bar mb-4">
+      <ion-item lines="none">
+        <ion-input (ionInput)="searchCity($event)" placeholder="Où souhaitez-vous chercher ?" clearInput></ion-input>
+      </ion-item>
+    </div>
+
+    <div *ngIf="garageCity === undefined">
+      <div class="row">
+        <div class="col-12 col-md-6 mb-4" *ngFor="let item of garages">
+          <div class="card shadow-sm" *ngIf="item.image_url != ''">
+            <img [src]="item.image_url" class="card-img-top" >
+            <div class="card-body">
+              <h5 class="card-title">{{item.name}}</h5>
+              <p class="card-text">{{item.location.city}}</p>
+              <a  class="btn btn-primary" (click)="goDetail(item)">En savoir plus</a>
+            </div>
           </div>
-          <div class="card-content white-text">
-            <span class="card-title">{{item.name}}</span>
-            <p>{{item.location.city}}</p>
-          </div>
-          <div class="card-action">
-            <a (click)="goDetail(item)">En savoir plus</a>
-            <a>Commentaire</a>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="garageCity !== undefined">
+      <div class="row">
+        <div class="col-12 col-md-6 mb-4" *ngFor="let item of garageValidate">
+          <div class="card shadow-sm" *ngIf="item.image_url != ''">
+            <img [src]="item.image_url" class="card-img-top" *ngIf="item.image_url != ''">
+            <div class="card-body">
+              <h5 class="card-title">{{item.name}}</h5>
+              <p class="card-text">{{item.location.city}}</p>
+              <a  class="btn btn-primary" (click)="goDetail(item)">En savoir plus</a>
+              <a  class="btn btn-secondary">Commentaire</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
 </ion-content>
+
+<style>
+  .background-gradient {
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    color: #fff;
+  }
+  .text-center {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  .intro-text {
+    margin-bottom: 20px;
+  }
+  .intro-text h2 {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .intro-text p {
+    font-size: 1.2em;
+  }
+  .search-bar {
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 5px;
+  }
+  .card {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .card-img-top {
+    height: 200px;
+    object-fit: cover;
+  }
+  .card-title {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #333;
+  }
+  .btn {
+    margin-right: 10px;
+  }
+</style>

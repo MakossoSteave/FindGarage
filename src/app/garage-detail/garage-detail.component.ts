@@ -14,6 +14,8 @@ export class GarageDetailComponent implements OnInit {
   garageId: any;
   address : string|any;
   postale_code : string | any;
+  rating: any ;
+  ratingArray:number[] | undefined;
 
 
   constructor(private route: ActivatedRoute, private garageService: HomeService, private router: Router) { }
@@ -26,6 +28,9 @@ export class GarageDetailComponent implements OnInit {
         console.log(data)
         this.address = this.garage.location.address1 +" "+this.garage.location.city
         this.postale_code = this.garage.location.zip_code
+        this.rating = this.garage.rating
+        this.ratingArray = Array.from({length: this.rating}, (_, index) => index + 1);
+        console.log(this.ratingArray)
       });
     }else{
       console.log('aucune donné trouvé ')

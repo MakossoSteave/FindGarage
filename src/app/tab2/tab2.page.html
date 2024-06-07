@@ -1,13 +1,17 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-     {{title}}
-    </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{title}}</ion-title>
   </ion-toolbar>
 </ion-header>
-<div class="map-container center">
-  <div class="center">
-     <h1 class="center">Ou je suis</h1>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="map-container">
+    <google-map [center]="center" [zoom]="zoom" [options]="options"></google-map>
   </div>
-  <google-map [center]="center" [zoom]="zoom" [options]="options"></google-map>
-</div>
+</ion-content>
+
+
+
